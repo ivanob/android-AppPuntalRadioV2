@@ -1,0 +1,28 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.ivanob.puntalradio.MainActivity">
+
+    <item
+        android:id="@+id/action_sleep"
+        android:icon="@drawable/ic_timer"
+        android:title="@string/action_temporizador"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/action_delay"
+        android:icon="@drawable/ic_av_timer"
+        android:title="@string/action_delay"
+        app:showAsAction="ifRoom"/>
+
+
+    <item
+        android:id="@+id/menu_about"
+        android:showAsAction="never"
+        android:title="@string/menu_about" />
+    <item
+        android:id="@+id/menu_exit"
+        android:showAsAction="never"
+        android:title="@string/menu_exit"/>
+
+</menu>

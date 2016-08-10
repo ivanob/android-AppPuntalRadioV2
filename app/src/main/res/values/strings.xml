@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Puntal Radio</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_actionbar">Puntal Radio</string>
+    <string name="subtitle_actionbar">tu emisora online</string>
+
+    <string name="action_temporizador">Modo sleep</string>
+    <string name="action_delay">Añadir retardo</string>
+
+    <string name="portada_tab">Portada</string>
+    <string name="parrilla_tab">Parrilla</string>
+    <string name="programas_tab">Programas</string>
+    <string name="menu_about">Acerca de...</string>
+    <string name="menu_exit">Salir</string>
+
+    <string name="connected_msg">Conectado a Puntal Radio</string>
+
+    <color name="highlightedTextViewColor">#000088</color>
+    <color name="normalTextViewColor">#000044</color>
+
+    <string name="info_programas">Toca en el nombre de cada programa para obtener más información</string>
+</resources>
