@@ -1,5 +1,9 @@
 package com.ivanob.puntalradio.helper;
 
+import com.ivanob.puntalradio.model.TweetBean;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import twitter4j.Query;
@@ -15,18 +19,14 @@ import twitter4j.conf.ConfigurationBuilder;
  */
 public class TwitterHandler {
     private Twitter twitter;
-    private static TwitterHandler instance = new TwitterHandler();
 
-    private TwitterHandler(){
+    public TwitterHandler(){
         TwitterFactory tf = new TwitterFactory();
         twitter = tf.getInstance();
     }
 
-    public static TwitterHandler getInstance(){
-        return instance;
-    }
-
-    public void loadTweets(){
+    public List<TweetBean> loadTweets(){
+        List<TweetBean> tweets = new ArrayList<TweetBean>();
         try {
             List<Status> statuses;
             String user;
@@ -34,14 +34,15 @@ public class TwitterHandler {
             statuses = twitter.getUserTimeline(user);
             System.out.println("Showing @" + user + "'s user timeline.");
             for (Status status : statuses) {
-                System.out.println("@" + status.getUser().getScreenName() + " - " + status.getText());
+                //System.out.println("@" + status.getUser().getScreenName() + " - " + status.getText());
+                tweets.add(new TweetBean(status.getUser().getScreenName(), status.getText()));
             }
         } catch (TwitterException te) {
             te.printStackTrace();
             System.out.println("Failed to get timeline: " + te.getMessage());
             System.exit(-1);
         }
-
+        return tweets;
     }
 
 

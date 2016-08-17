@@ -1,5 +1,6 @@
 package com.ivanob.puntalradio;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -17,6 +18,7 @@ import android.view.MenuItem;
 import com.ivanob.puntalradio.fragments.ParrillaFragment;
 import com.ivanob.puntalradio.fragments.PortadaFragment;
 import com.ivanob.puntalradio.fragments.ProgramasFragment;
+import com.ivanob.puntalradio.helper.RadioManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +27,17 @@ public class MainActivity extends AppCompatActivity {
 
     private ViewPager viewPager;
     private TabLayout tabLayout;
+    private RadioManager rm;
+
+    private void switchPlaystopButton(FloatingActionButton fab){
+        if(rm.isPlaying()){ //It is playing, so I have to stop it
+            rm.pausePlayer();
+            fab.setImageDrawable(getResources().getDrawable(R.drawable.ic_play_arrow_white_48dp));
+        }else{ //It is stopped, so I have to play it
+            rm.resumePlayer();
+            fab.setImageDrawable(getResources().getDrawable(R.drawable.ic_stop_white_48dp));
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +45,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         createToolbar();
 
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        Context context = this.getApplicationContext();
+        rm = RadioManager.getInstance(context);
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();*/
+                switchPlaystopButton(fab);
             }
         });
 
