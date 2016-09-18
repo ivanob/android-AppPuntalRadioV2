@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<programa>
+	<nombre>La cocina mágica</nombre>
+	<logo>logo_cocina.png</logo>
+	<descripcion>Es un programa de cocina distinto, donde prima la alimentación sana 
+	y ecológica, además de recetas, consejos y buena música. </descripcion>
+	<horario>Los sábados de 13,00 a 14,00 horas. Redifusión los lunes a las 16,00 horas.</horario>
+</programa>

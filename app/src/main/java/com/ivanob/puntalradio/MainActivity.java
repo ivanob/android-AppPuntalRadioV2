@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         createToolbar();
 
         Context context = this.getApplicationContext();
-        rm = RadioManager.getInstance(context);
+    //    rm = RadioManager.getInstance(context);
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setTitle(R.string.title_actionbar);
         toolbar.setSubtitle(R.string.subtitle_actionbar);
-
     }
 
     @Override

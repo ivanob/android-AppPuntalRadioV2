@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<programa>
+	<nombre>Piensa en cines</nombre>
+	<logo>logo_cines.png</logo>
+	<descripcion>Toda la actualidad del cine nacional e 
+	internacional, con comentarios, críticas, recomendaciones, 
+	cartelera y recaudaciones.</descripcion>
+	<horario>Los lunes de 21,45 a 23,30. 
+	Redifusión los jueves a las 12,00 horas</horario>
+</programa>

@@ -19,4 +19,5 @@
     <color name="normalTextViewColor">#000044</color>
 
     <string name="info_programas">Toca en el nombre de cada programa para obtener más información</string>
+    <string name="message_tweets">Últimos tweets publicados</string>
 </resources>

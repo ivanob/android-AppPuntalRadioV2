@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<programas>
+	<programa nombre="Por la banda">
+		<fichero>banda.xml</fichero>
+		<media>
+			<podcast>http://www.ivoox.com/podcast-por-banda_sq_f168759.5797922_1.html</podcast>
+			<facebook>http://www.facebook.com/groups/327572060681281/</facebook>
+		</media>
+	</programa>
+	
+	<programa nombre="El Cutio">
+		<fichero>cutio.xml</fichero>
+		<media>
+			<podcast>http://www.ivoox.com/cutio_sq_f187218.5797922_1.html</podcast>
+			<facebook>https://www.facebook.com/groups/201854753297485/?fref=ts</facebook>
+		</media>
+	</programa>
+	
+	<programa nombre="Piensa en cines">
+		<fichero>cines.xml</fichero>
+		<media>
+			<blog>http://piensaencines.blogspot.com/</blog>
+			<podcast>http://www.ivoox.com/podcast-piensaencines_sq_f168234.5797922_1.html</podcast>
+			<facebook>https://www.facebook.com/pages/Piensaencines/361323943987925</facebook>
+		</media>
+	</programa>
+	
+	<programa nombre="5 inicial">
+		<fichero>inicial5.xml</fichero>
+		<media>
+			<facebook>https://www.facebook.com/groups/631030246943740/?ref=ts&amp;fref=ts</facebook>
+			<podcast>http://www.ivoox.com/podcast-5-inicial_sq_f184553.5797922_1.html</podcast>
+		</media>
+	</programa>
+	
+	<programa nombre="Planeta Rugby">
+		<fichero>rugby.xml</fichero>
+		<media>
+			<facebook>https://www.facebook.com/planeta.rrugby?ref=ts&amp;amp;fref=ts</facebook>
+			<podcast>http://www.ivoox.com/podcast-5-inicial_sq_f184553.5797922_1.html</podcast>
+		</media>
+	</programa>
+	
+	<programa nombre="A pie de campo">
+		<fichero>piecampo.xml</fichero>
+		<media>
+			<facebook>https://www.facebook.com/groups/235762599923108/</facebook>
+			<podcast>http://www.ivoox.com/a-pie-campo_sq_f184789.5797922_1.html</podcast>
+		</media>
+	</programa>
+	
+	<programa nombre="Cambio de ritmo">
+		<fichero>ritmo.xml</fichero>
+		<media>
+			<facebook>https://www.facebook.com/groups/530300557055758/</facebook>
+			<podcast>http://www.ivoox.com/podcast-cambio-ritmo_sq_f184994.5797922_1.html</podcast>
+		</media>
+	</programa>
+	
+	<programa nombre="Stick">
+		<fichero>stick.xml</fichero>
+		<media>
+			<facebook>https://www.facebook.com/groups/678316922192592/</facebook>
+			<podcast>http://www.ivoox.com/stick_sq_f185032.5797922_1.html</podcast>
+		</media>
+	</programa>
+	
+	<programa nombre="Fraggle-Rock">
+		<fichero>fraggle.xml</fichero>
+		<media>
+			<facebook>https://www.facebook.com/pages/Fraggle-Rock-Radio/1410110865920256</facebook>
+			<podcast>http://www.ivoox.com/podcast-fraggle-rock_sq_f1112151_1.html</podcast>
+		</media>
+	</programa>
+	
+	<programa nombre="La cocina mágica">
+		<fichero>cocina.xml</fichero>
+		<media>
+			<facebook>https://www.facebook.com/groups/484226731687162/?ref=ts&amp;fref=ts</facebook>
+			<podcast>http://www.ivoox.com/podcast-cocina-magica_sq_f198504_1.html</podcast>
+		</media>
+	</programa>
+	
+	<programa nombre="No solo 80's">
+		<fichero>nosolo80.xml</fichero>
+		<media>
+			<podcast>http://www.ivoox.com/podcast-no-solo-80-s_sq_f168390.5797922_1.html</podcast>
+			<facebook>https://www.facebook.com/groups/NoSoloOchentas/</facebook>
+		</media>
+	</programa>
+	
+	<programa nombre="En directo">
+		<fichero>directo.xml</fichero>
+		<media>
+		</media>
+	</programa>
+</programas>

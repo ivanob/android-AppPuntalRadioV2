@@ -35,7 +35,8 @@ public class TwitterHandler {
             System.out.println("Showing @" + user + "'s user timeline.");
             for (Status status : statuses) {
                 //System.out.println("@" + status.getUser().getScreenName() + " - " + status.getText());
-                tweets.add(new TweetBean(status.getUser().getScreenName(), status.getText()));
+                tweets.add(new TweetBean(status.getUser().getScreenName(), status.getText(),
+                        status.getCreatedAt(), status.getUser().getProfileImageURL()));
             }
         } catch (TwitterException te) {
             te.printStackTrace();
