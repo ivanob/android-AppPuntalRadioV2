@@ -7,7 +7,7 @@
     <dimen name="distance_media_buttons">5dp</dimen>
 
     <dimen name="title">17dp</dimen>
-    <dimen name="rating">15dip</dimen>
+    <dimen name="rating">13dip</dimen>
     <dimen name="genre">13dip</dimen>
-    <dimen name="year">12dip</dimen>
+    <dimen name="year">10dip</dimen>
 </resources>

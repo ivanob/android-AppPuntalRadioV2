@@ -5,40 +5,44 @@
     android:background="@color/verde_bg_fragmento"
     android:gravity="center"
     android:orientation="vertical"
-    android:layout_marginRight="10dp"
-    android:layout_marginLeft="10dp"
-    android:layout_marginTop="10dp"
-    android:paddingLeft="10dp" >
+    android:weightSum="1">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
-            android:orientation="vertical"
+        <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="Ultimos tweets publicados:"
+                    android:id="@+id/textView"
+                    android:gravity="center"
+            android:layout_weight="0.01"
+            android:layout_alignRight="@+id/list"
+            android:layout_alignEnd="@+id/list"
+            android:layout_alignLeft="@+id/list"
+            android:layout_alignStart="@+id/list" />
+
+        <ListView
+                        android:id="@+id/list"
+                        android:layout_width="wrap_content"
+                        android:layout_height="238dp"
+                        android:background="@drawable/shape_rounded_tweeter"
+                        android:divider="@color/list_divider"
+                        android:dividerHeight="1dp"
+                        android:listSelector="@drawable/list_row_selector"
+                        android:gravity="center"
+                        android:padding="10dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+            android:layout_weight="0.04" />
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Ultimos tweets publicados:"
-                android:id="@+id/textView" />
-
-            <ListView
-                android:id="@+id/list"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:divider="@color/list_divider"
-                android:dividerHeight="1dp"
-                android:listSelector="@drawable/list_row_selector" />
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="99dp"></LinearLayout>
-        </LinearLayout>
+            android:layout_height="91dp"></RelativeLayout>
     </LinearLayout>
+
 </RelativeLayout>
