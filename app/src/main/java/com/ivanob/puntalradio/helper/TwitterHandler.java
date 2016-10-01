@@ -1,5 +1,7 @@
 package com.ivanob.puntalradio.helper;
 
+import android.text.Html;
+
 import com.ivanob.puntalradio.model.TweetBean;
 
 import java.util.ArrayList;
@@ -35,8 +37,15 @@ public class TwitterHandler {
             System.out.println("Showing @" + user + "'s user timeline.");
             for (Status status : statuses) {
                 //System.out.println("@" + status.getUser().getScreenName() + " - " + status.getText());
-                tweets.add(new TweetBean(status.getUser().getScreenName(), status.getText(),
-                        status.getCreatedAt(), status.getUser().getProfileImageURL()));
+                String thumbnail = status.getUser().getProfileImageURL();
+                String text = status.getText();
+                if(status.isRetweet()){
+                    thumbnail = status.getRetweetedStatus().getUser().getProfileImageURL();
+                    text = "<b>" + text;
+                    text = text.substring(0, text.indexOf(":")) + "</b>" + text.substring(text.indexOf(":"), text.length());
+                }
+                tweets.add(new TweetBean(status.getUser().getScreenName(), text,
+                        status.getCreatedAt(), thumbnail));
             }
         } catch (TwitterException te) {
             te.printStackTrace();

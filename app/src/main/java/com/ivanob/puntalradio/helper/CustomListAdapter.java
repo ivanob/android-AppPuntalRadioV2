@@ -2,16 +2,23 @@ package com.ivanob.puntalradio.helper;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Movie;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ivanob.puntalradio.R;
 import com.ivanob.puntalradio.model.TweetBean;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 
 /**
@@ -55,15 +62,28 @@ public class CustomListAdapter extends BaseAdapter {
         TextView rating = (TextView) convertView.findViewById(R.id.rating);
         TextView genre = (TextView) convertView.findViewById(R.id.genre);
         TextView year = (TextView) convertView.findViewById(R.id.releaseYear);
+        ImageView thumbnail = (ImageView) convertView.findViewById(R.id.thumbnail);
 
         // getting movie data for the row
         TweetBean tweet = tweets.get(position);
 
         // title
-        title.setText(tweet.getUser());
+        //title.setText(tweet.getUser());
 
         // rating
-        rating.setText(tweet.getTweet());
+        rating.setText(Html.fromHtml(tweet.getTweet()));
+
+        URL url = null;
+        try {
+            url = new URL(tweet.getUrlImgProfile());
+            Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+            thumbnail.setImageBitmap(bmp);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
         // genre
         /*String genreStr = "";
