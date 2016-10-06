@@ -1,5 +1,7 @@
 package com.ivanob.puntalradio.helper;
 
+import com.ivanob.puntalradio.model.ConfigBean;
+
 /**
  * Reads the .pls file to provide the configuration to connect to the
  * station
@@ -7,20 +9,20 @@ package com.ivanob.puntalradio.helper;
  *
  */
 public class StationConfigManager {
-	
 	private static StationConfigManager instance = null;
+	private String urlConnection = "";
 	
-	public static StationConfigManager getInstance() {
+	public static StationConfigManager getInstance(ConfigBean config) {
 		if(instance == null) {
-			instance = new StationConfigManager();
+			instance = new StationConfigManager(config);
 		}
 		return instance;
 	}
 	
-	private StationConfigManager(){}
+	private StationConfigManager(ConfigBean config){urlConnection = config.getUrlConnection();}
 	
 	public String getStationURL(){
-		return "http://5.39.76.68:8036/";
+		return urlConnection;
 	}
 
 }

@@ -69,7 +69,7 @@ public class RadioProgrammingManager {
 			e.printStackTrace();
 		}
 	}
-
+/*
 	public String loadJSONFromAsset() {
 		String json = null;
 		try {
@@ -84,7 +84,7 @@ public class RadioProgrammingManager {
 			return null;
 		}
 		return json;
-	}
+	}*/
 
 
 	public List<RadioProgram> readJsonStream(InputStream in) throws IOException, JSONException {
@@ -110,10 +110,40 @@ public class RadioProgrammingManager {
 				String strLogo = oneObject.getString("logo");
 				strLogo = strLogo.substring(0, strLogo.lastIndexOf('.'));
 				int logoID = getResId(strLogo, "drawable", ctx);
+				String emision = oneObject.getString("emision");
+				String presentador = oneObject.getString("presentadores");
+				JSONObject objSocial = oneObject.getJSONObject("social");
+
 				RadioProgram prog = new RadioProgram();
 				prog.setNombre(nombre);
-				prog.setDescripcion(descripcion);
+				prog.setDescripcion(descripcion.replace("\n"," ").replace("\t", ""));
 				prog.setIdLogo(logoID);
+				prog.setHorarioEmision(emision);
+				if(oneObject.has("redifusion")) {
+					String redifusion = oneObject.getString("redifusion");
+					prog.setHorarioRedifusion(redifusion);
+				}
+				prog.setPresentador(presentador);
+				if(oneObject.has("colaborador")) {
+					String colaborador = oneObject.getString("colaborador");
+					prog.setColaborador(colaborador);
+				}
+				if(objSocial.has("podcast")) {
+					String socialPodcast = objSocial.getString("podcast");
+					prog.addMediaURL("podcast", socialPodcast);
+				}
+				if(objSocial.has("blog")) {
+					String socialBlog = objSocial.getString("blog");
+					prog.addMediaURL("blog", socialBlog);
+				}
+				if(objSocial.has("twitter")) {
+					String socialTwitter = objSocial.getString("twitter");
+					prog.addMediaURL("twitter", socialTwitter);
+				}
+				if(objSocial.has("facebook")) {
+					String socialFacebook = objSocial.getString("facebook");
+					prog.addMediaURL("facebook", socialFacebook);
+				}
 				listPrograms.add(prog);
 			} catch (JSONException e) {
 				// Oops

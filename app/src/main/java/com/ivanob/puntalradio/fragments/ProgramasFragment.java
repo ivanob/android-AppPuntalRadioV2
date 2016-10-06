@@ -59,7 +59,15 @@ public class ProgramasFragment extends Fragment {
     }
 
     public void toggleDetails(View view) {
-
+        if (linearLayoutDetails.getVisibility() == View.GONE) {
+            ExpandAndCollapseUtils.expand(linearLayoutDetails, DURATION);
+            imageViewExpand.setImageResource(R.mipmap.more);
+            rotate(-180.0f);
+        } else {
+            ExpandAndCollapseUtils.collapse(linearLayoutDetails, DURATION);
+            imageViewExpand.setImageResource(R.mipmap.less);
+            rotate(180.0f);
+        }
     }
 
     private void rotate(float angle) {

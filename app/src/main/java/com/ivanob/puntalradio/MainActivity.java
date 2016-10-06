@@ -19,7 +19,15 @@ import com.ivanob.puntalradio.fragments.ParrillaFragment;
 import com.ivanob.puntalradio.fragments.PortadaFragment;
 import com.ivanob.puntalradio.fragments.ProgramasFragment;
 import com.ivanob.puntalradio.helper.RadioManager;
+import com.ivanob.puntalradio.model.ConfigBean;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private TabLayout tabLayout;
     private RadioManager rm;
+    private ConfigBean config = new ConfigBean();
 
     private void switchPlaystopButton(FloatingActionButton fab){
         if(rm.isPlaying()){ //It is playing, so I have to stop it
@@ -39,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -49,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
     //    rm = RadioManager.getInstance(context);
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
-            @Override
             public void onClick(View view) {
                 /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();*/
@@ -63,6 +70,31 @@ public class MainActivity extends AppCompatActivity {
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
         setupTabIcons();
+        try {
+            this.loadConfiguration(context);
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }
+
+    private void loadConfiguration(Context ctx) throws IOException, JSONException {
+        InputStream is = ctx.getAssets().open("info_general.json");
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"), 8);
+        StringBuilder sb = new StringBuilder();
+
+        String line = null;
+        while ((line = reader.readLine()) != null)
+        {
+            sb.append(line + "\n");
+        }
+        String result = sb.toString();
+        JSONObject jObject = new JSONObject(result);
+        jObject = jObject.getJSONObject("informacion");
+        config.setBlog(jObject.getString("blog"));
+        config.setEmail(jObject.getString("email"));
+        config.setFacebook(jObject.getString("facebook"));
+        config.setTwitter(jObject.getString("twitter"));
+        config.setUrlConnection(jObject.getString("url_conexion"));
     }
 
     private void createToolbar(){
@@ -72,7 +104,6 @@ public class MainActivity extends AppCompatActivity {
         toolbar.setSubtitle(R.string.subtitle_actionbar);
     }
 
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -103,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new PortadaFragment(), "");
+        adapter.addFragment(new PortadaFragment(config), "");
         adapter.addFragment(new ParrillaFragment(), "");
         adapter.addFragment(new ProgramasFragment(), "");
         viewPager.setAdapter(adapter);
@@ -142,5 +173,6 @@ public class MainActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             return mFragmentTitleList.get(position);
         }
+
     }
 }

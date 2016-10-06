@@ -9,8 +9,43 @@ public class RadioProgram {
 	private String ficheroDesc;
 	private int idLogo;
 	private String descripcion;
-	private String horario;
+	private String horarioEmision;
+	private String horarioRedifusion;
+	private String presentador;
+	private String colaborador;
 	private Map <String, String> media = new HashMap<String, String>();
+
+	public String getHorarioEmision() {
+		return horarioEmision;
+	}
+
+	public void setHorarioEmision(String horarioEmision) {
+		this.horarioEmision = horarioEmision;
+	}
+	public String getHorarioRedifusion() {
+		return horarioRedifusion;
+	}
+
+	public void setHorarioRedifusion(String horarioRedifusion) {
+		this.horarioRedifusion = horarioRedifusion;
+	}
+
+	public String getPresentador() {
+		return presentador;
+	}
+
+	public void setPresentador(String presentador) {
+		this.presentador = presentador;
+	}
+
+	public String getColaborador() {
+		return colaborador;
+	}
+
+	public void setColaborador(String colaborador) {
+		this.colaborador = colaborador;
+	}
+
 
 	public String getNombre() {
 		return nombre;
@@ -54,14 +89,6 @@ public class RadioProgram {
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
-	}
-
-	public String getHorario() {
-		return horario;
-	}
-
-	public void setHorario(String horario) {
-		this.horario = horario;
 	}
 
 	public String getNombreLargo() {
