@@ -12,6 +12,7 @@
 
     <color name="verde_bg_fragmento">#BFF2D0</color>
     <color name="negro">#000000</color>
+    <color name="gris">#d6d6d6</color>
 
     <color name="verde_background_info">#E2FFD9</color>
     <color name="gris_letra_horarios">#969696</color>

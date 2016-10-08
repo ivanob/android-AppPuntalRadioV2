@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 public class RadioManager {
 	
-	private StationConfigManager stationManager = StationConfigManager.getInstance();
+	private StationConfigManager stationManager;
 	private static RadioManager instance = null;
 	private MediaPlayer mp;
 	private Context context;

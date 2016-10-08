@@ -1,5 +1,8 @@
 package com.ivanob.puntalradio.fragments;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
@@ -8,12 +11,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ivanob.puntalradio.R;
 import com.ivanob.puntalradio.helper.ExpandAndCollapseUtils;
+import com.ivanob.puntalradio.model.RadioProgram;
 import com.ivanob.puntalradio.model.RadioProgrammingManager;
 
 /**
@@ -22,6 +27,7 @@ import com.ivanob.puntalradio.model.RadioProgrammingManager;
 public class AdapterProgramas extends RecyclerView.Adapter<AdapterProgramas.ProgramViewHolder> {
     private RadioProgrammingManager progManager;
     private int expandedPosition = -1;
+    private Context ctx;
 
     public static class ProgramViewHolder extends RecyclerView.ViewHolder {
         CardView cv;
@@ -30,6 +36,8 @@ public class AdapterProgramas extends RecyclerView.Adapter<AdapterProgramas.Prog
         TextView description;
         TextView info;
         View details;
+        ImageButton btnFacebook, btnTwitter, btnBlog, btnPodcast;
+        LinearLayout socialDetalles;
         private ViewGroup linearLayoutDetails;
         private static final int DURATION = 250;
         private ImageView imageViewExpand;
@@ -44,6 +52,11 @@ public class AdapterProgramas extends RecyclerView.Adapter<AdapterProgramas.Prog
             linearLayoutDetails = (ViewGroup) itemView.findViewById(R.id.linearLayoutDetails);
             imageViewExpand = (ImageView) itemView.findViewById(R.id.imageViewExpand);
             info = (TextView) itemView.findViewById(R.id.textDetalles);
+            btnFacebook = (ImageButton) itemView.findViewById(R.id.socialBtnFB);
+            btnTwitter = (ImageButton) itemView.findViewById(R.id.socialBtnTwitter);
+            btnPodcast = (ImageButton) itemView.findViewById(R.id.socialBtnPodcast);
+            btnBlog = (ImageButton) itemView.findViewById(R.id.socialBtnBlogger);
+            socialDetalles = (LinearLayout)itemView.findViewById(R.id.socialDetalles);
             details.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     if (linearLayoutDetails.getVisibility() == View.GONE) {
@@ -56,8 +69,7 @@ public class AdapterProgramas extends RecyclerView.Adapter<AdapterProgramas.Prog
                         rotate(180.0f);
                     }
                 }
-            });
-        }
+            });}
 
             private void rotate(float angle) {
                 Animation animation = new RotateAnimation(0.0f, angle, Animation.RELATIVE_TO_SELF, 0.5f,
@@ -77,17 +89,64 @@ public class AdapterProgramas extends RecyclerView.Adapter<AdapterProgramas.Prog
 
     public ProgramViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.drawable.card_programa, viewGroup, false);
+        ctx = v.getContext();
         ProgramViewHolder pvh = new ProgramViewHolder(v);
         return pvh;
     }
 
 
     public void onBindViewHolder(ProgramViewHolder holder, int position) {
-        holder.name.setText(progManager.getProgram(position).getNombre());
-        String[] descrChunks = splitDescription(progManager.getProgram(position).getDescripcion());
+        final RadioProgram prog = progManager.getProgram(position);
+        holder.name.setText(prog.getNombre());
+        String[] descrChunks = splitDescription(prog.getDescripcion());
         holder.description.setText(descrChunks[0]);
-        holder.thumbnail.setImageResource(progManager.getProgram(position).getIdLogo());
+        holder.thumbnail.setImageResource(prog.getIdLogo());
         holder.info.setText(Html.fromHtml(buildDetailsSection(holder, position, descrChunks[1])));
+        holder.linearLayoutDetails.removeView(holder.btnFacebook);
+        if(prog.getMediaURL("facebook")!=null) {
+            holder.btnFacebook.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View arg0) {
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse(prog.getMediaURL("facebook")));
+                    ctx.startActivity(i);
+                }
+            });
+        }else{
+            holder.btnFacebook.setVisibility(View.GONE);
+        }
+        if(prog.getMediaURL("twitter")!=null) {
+            holder.btnTwitter.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View arg0) {
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse(prog.getMediaURL("twitter")));
+                    ctx.startActivity(i);
+                }
+            });
+        }else{
+            holder.btnTwitter.setVisibility(View.GONE);
+        }
+        if(prog.getMediaURL("podcast")!=null) {
+            holder.btnPodcast.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View arg0) {
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse(prog.getMediaURL("podcast")));
+                    ctx.startActivity(i);
+                }
+            });
+        }else{
+            holder.btnPodcast.setVisibility(View.GONE);
+        }
+        if(prog.getMediaURL("blog")!=null) {
+            holder.btnBlog.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View arg0) {
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse(prog.getMediaURL("blog")));
+                    ctx.startActivity(i);
+                }
+            });
+        }else{
+            holder.btnBlog.setVisibility(View.GONE);
+        }
     }
 
     /**

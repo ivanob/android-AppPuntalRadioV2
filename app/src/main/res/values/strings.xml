@@ -20,4 +20,6 @@
 
     <string name="info_programas">Toca en el nombre de cada programa para obtener más información</string>
     <string name="message_tweets">Últimos tweets publicados</string>
+    <string name="details">detalles</string>
+    <string name="info">info</string>
 </resources>
