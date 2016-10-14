@@ -22,7 +22,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@android:drawable/ic_media_pause" />
+        android:layout_marginBottom="@dimen/fab_margin_bottom"
+        android:layout_marginRight="@dimen/fab_margin_right"
+        app:backgroundTint="@color/verde_racing"
+        android:src="@drawable/ic_stop_button" />
 
 </android.support.design.widget.CoordinatorLayout>

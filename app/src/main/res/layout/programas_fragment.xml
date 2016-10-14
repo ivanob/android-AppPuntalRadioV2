@@ -17,12 +17,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Lista de programas:"
+            android:text="@string/mensaje_programas"
             android:id="@+id/textView2"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:padding="10dp"
-            android:gravity="center" />
+            android:paddingTop="7dp"
+            android:paddingBottom="5dp"
+            android:gravity="center"
+            android:layout_alignEnd="@+id/recycler_programas"/>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_programas"
