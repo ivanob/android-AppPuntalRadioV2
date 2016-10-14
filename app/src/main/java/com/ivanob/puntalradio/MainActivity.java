@@ -1,7 +1,10 @@
 package com.ivanob.puntalradio;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
@@ -14,6 +17,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.ivanob.puntalradio.fragments.ParrillaFragment;
 import com.ivanob.puntalradio.fragments.PortadaFragment;
@@ -30,6 +34,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import com.ivanob.puntalradio.Consts;
+
+import com.ivanob.puntalradio.Consts.*;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,6 +45,13 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private RadioManager rm;
     private ConfigBean config = new ConfigBean();
+    private final CharSequence[] items = {" Ninguno "," Parar en 15 min "," Parar en 30 min "," Parar en 1 h "};
+    private int lastOptionTemp=0;
+    private Timer timer=new Timer();
+    private TimerSleepMode timerTask;
+    private AlertDialog levelDialog;
+    private boolean _doubleBackToExitPressedOnce = false;
+
 
     private void switchPlaystopButton(FloatingActionButton fab){
         if(rm.isPlaying()){ //It is playing, so I have to stop it
@@ -102,12 +117,54 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setTitle(R.string.title_actionbar);
         toolbar.setSubtitle(R.string.subtitle_actionbar);
+        toolbar.setLogo(R.mipmap.ic_launcher_logo);
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
+    }
+
+    private void setTimerSleepMode(long delay){
+        if(timerTask!=null){
+            timerTask.cancel(); //Cancelo el temporizador anterior
+        }
+        timerTask = new TimerSleepMode(this);
+        timer.schedule(timerTask, delay);
+    }
+
+    private void showSleepPopup() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Modo sleep");
+        builder.setSingleChoiceItems(items, lastOptionTemp, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int item) {
+                if(lastOptionTemp != item){ //Si se marco la misma opcion entonces no se hace nada
+                    lastOptionTemp = item;
+                    switch(item){
+                        case Consts.NO_SLEEP:
+                            if(timerTask!=null){
+                                timerTask.cancel(); //Cancelo el temporizador anterior
+                            }
+                            break;
+                        case Consts.SLEEP_15MIN:
+                            setTimerSleepMode(Consts.MIN15_MILISEC);
+                            break;
+                        case Consts.SLEEP_30MIN:
+                            setTimerSleepMode(Consts.MIN30_MILISEC);
+                            break;
+                        case Consts.SLEEP_1H:
+                            setTimerSleepMode(Consts.H1_MILISEC);
+                            break;
+
+                    }
+                }
+                levelDialog.dismiss();
+                //Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
+            }
+        });
+        levelDialog = builder.create();
+        levelDialog.show();
     }
 
     // Handle action bar item clicks here. The action bar will
@@ -117,20 +174,30 @@ public class MainActivity extends AppCompatActivity {
         // Handle presses on the action bar items
         switch (item.getItemId()) {
             case R.id.action_sleep:
-                //showSleepPopup();
+                showSleepPopup();
                 return true;
             case R.id.menu_about:
-                //showAboutDialog();
+                showAboutDialog();
                 return true;
             case R.id.menu_exit:
                 //rm.pausePlayer();
-                //closeApp();
+                closeApp();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
+    public void closeApp(){
+        //rm.pausePlayer();
+        finish();
+    }
+
+    private void showAboutDialog(){
+        AboutDialog about = new AboutDialog(this);
+        about.setTitle("Acerca de");
+        about.show();
+    }
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
@@ -154,12 +221,10 @@ public class MainActivity extends AppCompatActivity {
             super(manager);
         }
 
-        @Override
         public Fragment getItem(int position) {
             return mFragmentList.get(position);
         }
 
-        @Override
         public int getCount() {
             return mFragmentList.size();
         }
@@ -169,10 +234,24 @@ public class MainActivity extends AppCompatActivity {
             mFragmentTitleList.add(title);
         }
 
-        @Override
         public CharSequence getPageTitle(int position) {
             return mFragmentTitleList.get(position);
         }
 
+    }
+
+    public void onBackPressed() {
+        if (_doubleBackToExitPressedOnce) {
+            //super.onBackPressed();
+            closeApp();
+            return;
+        }
+        this._doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Pulsa de nuevo para salir", Toast.LENGTH_SHORT).show();
+        new Handler().postDelayed(new Runnable() {
+            public void run() {
+                _doubleBackToExitPressedOnce = false;
+            }
+        }, 2000);
     }
 }

@@ -14,7 +14,7 @@ import com.ivanob.puntalradio.R;
  * Created by ivan on 7/6/16.
  */
 public class ParrillaFragment extends Fragment{
-    private WebView webViewTimetable;
+    //private WebView webViewTimetable;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -22,10 +22,11 @@ public class ParrillaFragment extends Fragment{
     }
 
     public void onActivityCreated(Bundle savedInstanceState) {
-        webViewTimetable= (WebView)getActivity().findViewById(R.id.webViewTimetable);
+        super.onActivityCreated(savedInstanceState);
+        /*webViewTimetable= (WebView)getActivity().findViewById(R.id.webViewTimetable);
         webViewTimetable.loadUrl("file:///android_asset/time_table.html");
         WebSettings webSettings = webViewTimetable.getSettings();
         webSettings.setTextSize(WebSettings.TextSize.SMALLEST);
-        super.onActivityCreated(savedInstanceState);
+        super.onActivityCreated(savedInstanceState);*/
     }
 }
