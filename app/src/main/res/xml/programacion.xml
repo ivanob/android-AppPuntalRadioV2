@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <programas>
 	<programa nombre="Por la banda">
@@ -74,7 +74,7 @@
 		</media>
 	</programa>
 	
-	<programa nombre="La cocina mágica">
+	<programa nombre="La cocina mÃ¡gica">
 		<fichero>cocina.xml</fichero>
 		<media>
 			<facebook>https://www.facebook.com/groups/484226731687162/?ref=ts&amp;fref=ts</facebook>
