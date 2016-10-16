@@ -56,10 +56,10 @@ public class MainActivity extends AppCompatActivity {
     private void switchPlaystopButton(FloatingActionButton fab){
         if(rm.isPlaying()){ //It is playing, so I have to stop it
             rm.pausePlayer();
-            fab.setImageDrawable(getResources().getDrawable(R.drawable.ic_play_arrow_white_48dp));
+            fab.setImageDrawable(getResources().getDrawable(R.drawable.ic_play_button));
         }else{ //It is stopped, so I have to play it
             rm.resumePlayer();
-            fab.setImageDrawable(getResources().getDrawable(R.drawable.ic_stop_white_48dp));
+            fab.setImageDrawable(getResources().getDrawable(R.drawable.ic_stop_button));
         }
     }
 
@@ -69,12 +69,17 @@ public class MainActivity extends AppCompatActivity {
         createToolbar();
 
         Context context = this.getApplicationContext();
-    //    rm = RadioManager.getInstance(context);
+        try {
+            this.loadConfiguration(context);
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+        rm = RadioManager.getInstance(context, config);
+        rm.resumePlayer();
+
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();*/
                 switchPlaystopButton(fab);
             }
         });
@@ -85,11 +90,8 @@ public class MainActivity extends AppCompatActivity {
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
         setupTabIcons();
-        try {
-            this.loadConfiguration(context);
-        }catch(Exception ex){
-            ex.printStackTrace();
-        }
+
+        //switchPlaystopButton(fab);
     }
 
     private void loadConfiguration(Context ctx) throws IOException, JSONException {
@@ -180,7 +182,6 @@ public class MainActivity extends AppCompatActivity {
                 showAboutDialog();
                 return true;
             case R.id.menu_exit:
-                //rm.pausePlayer();
                 closeApp();
                 return true;
             default:
@@ -189,7 +190,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void closeApp(){
-        //rm.pausePlayer();
+        rm.pausePlayer();
         finish();
     }
 
@@ -201,7 +202,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new PortadaFragment(config), "");
+        PortadaFragment portFrag = new PortadaFragment();
+        portFrag.setConfig(config);
+        adapter.addFragment(portFrag, "");
         adapter.addFragment(new ParrillaFragment(), "");
         adapter.addFragment(new ProgramasFragment(), "");
         viewPager.setAdapter(adapter);

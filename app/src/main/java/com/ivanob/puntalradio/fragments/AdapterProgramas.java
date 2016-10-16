@@ -88,7 +88,7 @@ public class AdapterProgramas extends RecyclerView.Adapter<AdapterProgramas.Prog
 
 
     public ProgramViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.drawable.card_programa, viewGroup, false);
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.card_programa, viewGroup, false);
         ctx = v.getContext();
         ProgramViewHolder pvh = new ProgramViewHolder(v);
         return pvh;

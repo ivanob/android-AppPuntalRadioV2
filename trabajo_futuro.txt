@@ -1,10 +1,13 @@
 Trabajo futuro:
 
-- Aniadir acceso a los ultimos tweets publicados por @puntalradio en la portada
-- Intentar colocar la app en la barra de tareas cuando esta minimizada
-- Cuando se llame por telefono o reciba una llamada se debe cortar la reproduccion
-- Colocar una barra de volumen al pie de la app
-- Aniadir un gestor de xml
-- Gestion del error de conexion: que pasa si no hay internet?
-- Revisar el buffer de reproduccion. Al pausar, puede que al retomar la reproduccion 
+* Intentar colocar la app en la barra de tareas cuando esta minimizada
+* Cuando se llame por telefono o reciba una llamada se debe cortar la reproduccion
+* Revisar el buffer de reproduccion. Al pausar, puede que al retomar la reproduccion 
 suene el programa donde se dejo, puede que interese mas parar la conexion en vez de pausar.
+* Aniadir tests unitarios de todas las clases
+* Arreglar la seccion de "Detalles" en la pantalla de programas (los botones sociales salen reducidos).
+* Hace falta refactorizar mucho codigo: limpiar clases y reorganizar paquetes.
+* Limpiar recursos (imagenes, xml) que ya no se usa.
+* Pedir la pantalla de horarios actualizada.
+* Aniadir un servicio Web para servir los ficheros JSON desde un servidor.
+

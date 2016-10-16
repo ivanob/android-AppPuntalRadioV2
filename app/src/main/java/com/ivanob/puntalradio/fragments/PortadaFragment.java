@@ -39,11 +39,18 @@ public class PortadaFragment extends Fragment {
 
     private RequestToken requestToken;
     private TwitterHandler twitterHandler = new TwitterHandler();
-    private ConfigBean config;
 
-    public PortadaFragment(ConfigBean config){
+    public ConfigBean getConfig() {
+        return config;
+    }
+
+    public void setConfig(ConfigBean config) {
         this.config = config;
     }
+
+    private ConfigBean config;
+
+    public PortadaFragment(){}
 
     private void fillTweetList(){
         List<TweetBean> listTweets = twitterHandler.loadTweets();

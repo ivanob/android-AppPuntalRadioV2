@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import com.ivanob.puntalradio.R;
 import com.ivanob.puntalradio.R.string;
+import com.ivanob.puntalradio.model.ConfigBean;
 
 import android.app.Activity;
 import android.content.Context;
@@ -13,16 +14,16 @@ import android.media.MediaPlayer.OnPreparedListener;
 import android.widget.Toast;
 
 public class RadioManager {
-	
-	private StationConfigManager stationManager;
+
+	private String urlRadio = "";
 	private static RadioManager instance = null;
 	private MediaPlayer mp;
 	private Context context;
 	private boolean isPlaying;
 	
-	public static RadioManager getInstance(Context context) {
+	public static RadioManager getInstance(Context context, ConfigBean config) {
 		if(instance == null) {
-			instance = new RadioManager(context);
+			instance = new RadioManager(context, config);
 		}
 		return instance;
 	}
@@ -31,12 +32,12 @@ public class RadioManager {
 		return isPlaying;
 	}
 
-	private RadioManager(Context context){
+	private RadioManager(Context context, ConfigBean config){
 		this.context=context;
 		mp = new MediaPlayer();
 		isPlaying=true;
 		try {
-        	mp.setDataSource(stationManager.getStationURL());
+        	mp.setDataSource(config.getUrlConnection());
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
         } catch (IllegalStateException e) {
@@ -46,16 +47,16 @@ public class RadioManager {
         }
 		mp.setOnBufferingUpdateListener(new OnBufferingUpdateListener() {
             public void onBufferingUpdate(MediaPlayer mp, int percent) {
-                //playSeekBar.setSecondaryProgress(percent);
-                //Log.i("Buffering", "" + percent);
+			//playSeekBar.setSecondaryProgress(percent);
+			//Log.i("Buffering", "" + percent);
             }
         });
         mp.prepareAsync();
 
         mp.setOnPreparedListener(new OnPreparedListener() {
             public void onPrepared(MediaPlayer mp) {
-            	resumePlayer();
-            	isPlaying=true;
+			resumePlayer();
+			isPlaying=true;
             }
         });
 	}

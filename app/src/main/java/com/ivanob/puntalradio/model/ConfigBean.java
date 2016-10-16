@@ -1,9 +1,5 @@
 package com.ivanob.puntalradio.model;
 
-import android.content.Context;
-
-import com.ivanob.puntalradio.helper.StationConfigManager;
-
 /**
  * Created by ivan on 7/10/16.
  */

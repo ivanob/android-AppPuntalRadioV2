@@ -27,7 +27,6 @@ import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
 import com.ivanob.puntalradio.R;
-import com.ivanob.puntalradio.R.xml;
 
 import android.app.Activity;
 import android.content.Context;
@@ -124,8 +123,8 @@ public class RadioProgrammingManager {
 					prog.setHorarioRedifusion(redifusion);
 				}
 				prog.setPresentador(presentador);
-				if(oneObject.has("colaborador")) {
-					String colaborador = oneObject.getString("colaborador");
+				if(oneObject.has("colaboracion")) {
+					String colaborador = oneObject.getString("colaboracion");
 					prog.setColaborador(colaborador);
 				}
 				if(objSocial.has("podcast")) {

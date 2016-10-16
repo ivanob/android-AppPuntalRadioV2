@@ -50,7 +50,7 @@ public class TwitterHandler {
         } catch (TwitterException te) {
             te.printStackTrace();
             System.out.println("Failed to get timeline: " + te.getMessage());
-            System.exit(-1);
+            //System.exit(-1);
         }
         return tweets;
     }
