@@ -10,7 +10,7 @@ It is available for free in Google Play: https://play.google.com/store/apps/deta
 - Allows the user to turn off the app in a fixed time (mode sleep).
 - Completely redesigned using **Android Studio** and **Material Design** style.
 - **+600 installs and 176 active users** (October 2016).
-- 19 ratings and an qualification of **4.632**.
+- 19 ratings and score **4.632**.
 
 ### Screenshots
 ![alt tag](https://lh3.googleusercontent.com/Y0ojgOuSOwEiqCJ9T3bKfiH9nq8CqfRadlKIbhP303X5xm5tLQFShDlAlvwd-kcA7kg=h310-rw)
